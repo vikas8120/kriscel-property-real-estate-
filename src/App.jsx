@@ -69,7 +69,7 @@ function Shell() {
       {loading ? <Loader onComplete={() => setLoading(false)} /> : null}
       <CursorFollower />
       <Navbar />
-      <main>
+      <main className="site-sections">
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}

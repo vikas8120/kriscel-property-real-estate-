@@ -71,10 +71,17 @@ export default function SoldPortfolio() {
             key={item.id}
             type="button"
             onClick={() => setActive(item)}
-            className="min-w-[360px] max-w-[360px] overflow-hidden rounded-[1.8rem] bg-white text-left shadow-luxe"
-            whileHover={{ y: -6 }}
+            className="group sold-zoom-card min-w-[360px] max-w-[360px] overflow-hidden rounded-[1.8rem] bg-white text-left shadow-luxe"
+            whileHover={{ y: -8, scale: 1.02 }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
           >
-            <img src={item.image} alt={item.name} className="h-60 w-full object-cover" />
+            <div className="overflow-hidden">
+              <img
+                src={item.image}
+                alt={item.name}
+                className="h-60 w-full origin-center transform-gpu object-cover transition-transform duration-700 ease-out group-hover:scale-[1.14]"
+              />
+            </div>
             <div className="p-5">
               <div className="text-[11px] uppercase tracking-[0.35em] text-gold">
                 {item.market} · {item.year}

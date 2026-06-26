@@ -1,4 +1,4 @@
-import { ArrowRight, BadgeDollarSign, Globe2, ShieldCheck, Sparkles } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import SectionHeading from '../components/SectionHeading';
@@ -12,6 +12,7 @@ import { testimonialsData } from '../data/testimonialsData';
 import { formatCompact, formatPrice } from '../utils';
 import { useApp } from '../context/AppContext';
 
+const lifestyleTiles = ['Waterfront', 'City Penthouse', 'Golf Estates', 'Mountain Homes', 'Modern Villas', 'Investment Properties'];
 const stats = [
   ['$2B+', 'Sales Volume'],
   ['$500M+', 'Private Inventory'],
@@ -19,39 +20,50 @@ const stats = [
   ['20+', 'Global Markets'],
 ];
 
-const lifestyleTiles = ['Waterfront', 'City Penthouse', 'Golf Estates', 'Mountain Homes', 'Modern Villas', 'Investment Properties'];
-const heroVideos = [
-  {
-    src: '/videos/hero-video-1.mp4',
-    label: 'Luxury real estate hero video',
-  },
-  {
-    src: '/videos/hero-video-2.mp4',
-    label: 'Luxury architecture hero video',
-  },
+const heroVideoOne = {
+  src: '/videos/hero-video-1.mp4',
+  label: 'Luxury real estate hero video',
+};
+
+const heroVideoThree = {
+  src: '/videos/hero-video-3.mp4',
+  label: 'Luxury interior hero video',
+};
+
+const heroImageFour = {
+  src: '/images/hero-image-3.jpg',
+  label: 'Luxury living room hero image',
+};
+
+const heroVideoFive = {
+  src: '/videos/hero-video-4.mp4',
+  label: 'Luxury property walkthrough video',
+};
+
+const heroShowcaseSlides = [
+  { type: 'image', src: '/images/hero-showcase-1.jpg', label: 'Luxury classic living room' },
+  { type: 'image', src: '/images/hero-showcase-2.jpg', label: 'Luxury blue lounge interior' },
+  { type: 'image', src: '/images/hero-showcase-3.jpg', label: 'Modern luxury living room' },
 ];
+
+const bespokeMarketingBg = {
+  src: '/images/bespoke-marketing-bg.png',
+  label: 'Bespoke marketing kitchen background',
+};
 
 export default function Home() {
   const navigate = useNavigate();
   const { setPropertyModal, toggleSaved, savedIds, toggleCompare, compareIds, setTourModal } = useApp();
   const featured = propertiesData.filter((property) => property.featured);
-  const [heroVideoIndex, setHeroVideoIndex] = useState(() => {
-    if (typeof window === 'undefined') {
-      return 0;
-    }
-
-    const savedIndex = Number(window.localStorage.getItem('aureva-hero-video-index'));
-    return Number.isInteger(savedIndex) && savedIndex >= 0 && savedIndex < heroVideos.length ? savedIndex : 0;
-  });
+  const [activeHeroSlide, setActiveHeroSlide] = useState(0);
 
   useEffect(() => {
-    if (typeof window === 'undefined') {
-      return;
-    }
+    const interval = window.setInterval(() => {
+      setActiveHeroSlide((current) => (current + 1) % heroShowcaseSlides.length);
+    }, 3000);
 
-    const nextIndex = (heroVideoIndex + 1) % heroVideos.length;
-    window.localStorage.setItem('aureva-hero-video-index', String(nextIndex));
-  }, [heroVideoIndex]);
+    return () => window.clearInterval(interval);
+  }, []);
 
   const submitSearch = (event) => {
     event.preventDefault();
@@ -68,81 +80,112 @@ export default function Home() {
 
   return (
     <div>
-      <section className="relative overflow-hidden bg-hero-ivory">
-        <div className="absolute inset-0 grid-soft opacity-30" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),rgba(31,41,51,0.14)_45%,rgba(31,41,51,0.42)_100%)]" />
-        <video
-          key={heroVideos[heroVideoIndex].src}
-          src={heroVideos[heroVideoIndex].src}
-          aria-label={heroVideos[heroVideoIndex].label}
-          className="absolute inset-0 h-full w-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.18)_0%,rgba(31,41,51,0.18)_42%,rgba(31,41,51,0.42)_100%)]" />
-        <div className="absolute left-0 top-0 h-[700px] w-[700px] rounded-full bg-[radial-gradient(circle,rgba(201,183,156,0.28),transparent_65%)] blur-3xl" />
-        <div className="relative mx-auto flex min-h-[78vh] max-w-[1600px] items-center px-4 py-10 md:px-8 md:py-14 lg:min-h-[82vh] lg:py-16">
-          <div className="relative z-10 max-w-3xl">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-charcoal/10 bg-white/70 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.35em] text-gold">
-              <Sparkles size={14} /> Private Luxury Real Estate Representation
-            </div>
-            <h1 className="font-display text-5xl leading-[0.92] text-white md:text-7xl xl:text-[7.4rem]">
-              Private Estates. Global Reach. Discreet Representation.
-            </h1>
-            <p className="mt-6 max-w-2xl text-base leading-8 text-white/95 md:text-lg">
-              Luxury real estate advisory for exceptional homes, private listings, and landmark properties.
-            </p>
-
-            <form
-              onSubmit={submitSearch}
-              className="mt-8 grid gap-3 rounded-[2rem] border border-charcoal/8 bg-white/84 p-4 shadow-luxe backdrop-blur-sm md:grid-cols-4"
-            >
-              <input name="location" placeholder="Location" className="rounded-2xl border border-charcoal/8 bg-[var(--ivory)] px-4 py-3 outline-none" />
-              <input name="budget" placeholder="Budget" className="rounded-2xl border border-charcoal/8 bg-[var(--ivory)] px-4 py-3 outline-none" />
-              <select name="type" className="rounded-2xl border border-charcoal/8 bg-[var(--ivory)] px-4 py-3 outline-none">
-                <option value="">Property type</option>
-                <option>Estate</option>
-                <option>Villa</option>
-                <option>Penthouse</option>
-                <option>Townhouse</option>
-              </select>
-              <MagneticButton type="submit" className="bg-charcoal text-white">
-                Explore Listings
-              </MagneticButton>
-            </form>
-
-            <div className="mt-7 flex flex-wrap gap-3">
-              <MagneticButton as={Link} to="/private-listings" className="bg-gold text-white">
-                Request Private Access
-              </MagneticButton>
-              <MagneticButton as={Link} to="/home-valuation" className="border border-charcoal/10 bg-white text-charcoal">
-                Get Home Valuation
-              </MagneticButton>
-            </div>
-
-            <div className="mt-10 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-              {stats.map(([value, label]) => (
-                <div
-                  key={label}
-                  className="rounded-[1.6rem] border border-white/20 bg-white/12 p-5 shadow-[0_12px_40px_rgba(31,41,51,0.08)] backdrop-blur-sm"
-                >
-                  <div className="font-display text-4xl text-white">{value}</div>
-                  <div className="mt-2 text-xs font-bold uppercase tracking-[0.3em] text-white/65">{label}</div>
-                </div>
-              ))}
+      <div id="home-hero-stack">
+        <section className="relative h-[68vh] overflow-hidden bg-black sm:h-[74vh] md:h-[86vh] lg:h-[92vh]">
+          <div className="absolute inset-0 grid-soft opacity-30" />
+          <video
+            src={heroVideoOne.src}
+            aria-label={heroVideoOne.label}
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          />
+          <div className="relative z-10 flex h-full items-center justify-center px-4">
+            <div className="max-w-3xl text-center text-white">
+              <img
+                src="/images/kriscel-logo-hero.png"
+                alt="Kriscel Properties logo"
+                className="mx-auto w-32 object-contain drop-shadow-[0_14px_28px_rgba(0,0,0,0.45)] sm:w-40 md:w-48 lg:w-56"
+              />
+              <h1 className="mt-5 font-display text-lg uppercase leading-[1.1] tracking-[0.12em] text-white drop-shadow-[0_10px_35px_rgba(0,0,0,0.5)] sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl">
+                Every Great Story Begins
+                <span className="mt-2 block">With an Extraordinary Address</span>
+              </h1>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <section className="relative h-[74vh] overflow-hidden bg-black sm:h-[78vh] md:h-[90vh] lg:h-[96vh]">
+          {heroShowcaseSlides.map((slide, index) => {
+            const isActive = index === activeHeroSlide;
+
+            return (
+              <div
+                key={`${slide.type}-${slide.src}`}
+                className={`absolute inset-0 transition-opacity duration-700 ease-out ${
+                  isActive ? 'opacity-100' : 'opacity-0'
+                }`}
+              >
+                {slide.type === 'image' ? (
+                  <img src={slide.src} alt={slide.label} className="h-full w-full object-cover" />
+                ) : (
+                  <video
+                    src={slide.src}
+                    aria-label={slide.label}
+                    className="h-full w-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                  />
+                )}
+              </div>
+            );
+          })}
+          <div className="relative mx-auto flex h-full max-w-[1600px] items-end px-4 pb-8 sm:pb-10 md:px-8 md:pb-14 lg:pb-16">
+            <div className="relative z-10 max-w-2xl pb-1">
+              <form
+                onSubmit={submitSearch}
+                className="grid gap-1.5 rounded-[1.3rem] border border-charcoal/8 bg-white/84 p-2 shadow-luxe backdrop-blur-sm sm:grid-cols-2 md:grid-cols-4"
+              >
+                <input name="location" placeholder="Location" className="rounded-2xl border border-paletteNavy/20 bg-white/92 px-3 py-2 text-sm font-semibold text-paletteNavy outline-none placeholder:text-paletteSlate" />
+                <input name="budget" placeholder="Budget" className="rounded-2xl border border-paletteNavy/20 bg-white/92 px-3 py-2 text-sm font-semibold text-paletteNavy outline-none placeholder:text-paletteSlate" />
+                <select name="type" className="rounded-2xl border border-paletteNavy/20 bg-white/92 px-3 py-2 text-sm font-semibold text-paletteNavy outline-none">
+                  <option value="">Property type</option>
+                  <option>Estate</option>
+                  <option>Villa</option>
+                  <option>Penthouse</option>
+                  <option>Townhouse</option>
+                </select>
+                <MagneticButton type="submit" className="bg-charcoal px-4 py-2 text-sm text-white">
+                  Explore Listings
+                </MagneticButton>
+              </form>
+
+              <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+                <MagneticButton as={Link} to="/private-listings" className="w-full bg-gold px-4 py-2 text-sm text-white sm:w-auto">
+                  Request Private Access
+                </MagneticButton>
+                <MagneticButton as={Link} to="/home-valuation" className="w-full border border-charcoal/10 bg-white px-4 py-2 text-sm text-charcoal sm:w-auto">
+                  Get Home Valuation
+                </MagneticButton>
+              </div>
+
+              <div className="mt-5 grid gap-2 grid-cols-2 xl:grid-cols-4">
+                {stats.map(([value, label]) => (
+                  <div
+                    key={label}
+                    className="rounded-[1.25rem] border border-white/20 bg-white/12 p-2.5 shadow-[0_12px_40px_rgba(31,41,51,0.08)] backdrop-blur-sm sm:p-3"
+                  >
+                    <div className="font-display text-xl text-white sm:text-2xl md:text-[2.1rem]">{value}</div>
+                    <div className="mt-1 text-[8px] font-bold uppercase tracking-[0.26em] text-white/65 sm:text-[9px]">{label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
 
       <section className="mx-auto max-w-[1600px] px-4 py-20 md:px-8">
         <SectionHeading
           eyebrow="Exclusive Listings"
           title="Carefully curated homes with a private-client presentation."
-          description="Every property card is designed like an editorial story, with premium data, gallery motion, and discreet access tools."
         />
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           {featured.map((property) => (
@@ -160,8 +203,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1600px] px-4 py-20 md:px-8">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+      <section className="relative overflow-hidden px-4 py-20 md:px-8">
+        <img
+          src="/images/private-access-bg.jpg"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(48,71,94,0.72),rgba(231,222,200,0.72))]" />
+        <div className="relative mx-auto grid max-w-[1600px] gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
           <div className="rounded-[2rem] bg-charcoal p-8 text-white shadow-luxe">
             <div className="text-[11px] font-bold uppercase tracking-[0.4em] text-gold">Private Off-Market Access</div>
             <h2 className="mt-4 font-display text-5xl leading-none">Discreet representation for exceptional buyers.</h2>
@@ -179,7 +228,10 @@ export default function Home() {
           </div>
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {lifestyleTiles.map((tile, index) => (
-              <div key={tile} className={`rounded-[1.8rem] p-6 shadow-luxe ${index % 2 ? 'bg-white' : 'bg-[var(--ivory)]'}`}>
+              <div
+                key={tile}
+                className={`lifestyle-zoom-card rounded-[1.8rem] p-6 shadow-luxe ${index % 2 ? 'bg-white' : 'bg-[var(--ivory)]'}`}
+              >
                 <div className="text-[11px] font-bold uppercase tracking-[0.35em] text-gold">Browse by lifestyle</div>
                 <div className="mt-10 font-display text-3xl text-charcoal">{tile}</div>
                 <div className="mt-4 text-sm leading-7 text-charcoal/70">
@@ -196,7 +248,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Communities"
             title="Market intelligence by the worlds most desirable neighborhoods."
-            description="Kriscel Properties previews each market like a curated editorial spread with average price, ambiance, and featured home types."
+            titleClassName="text-3xl md:text-5xl"
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {communitiesData.slice(0, 4).map((community) => (
@@ -212,10 +264,18 @@ export default function Home() {
           title="Record-breaking sales, presented like a premium case study."
           description="Horizontal galleries, transparent metrics, and a polished chronology emphasize results without losing the luxury feel."
         />
-        <div className="mt-10 flex gap-5 overflow-x-auto pb-4">
-          {soldData.map((item) => (
-            <div key={item.id} className="min-w-[320px] max-w-[320px] rounded-[1.8rem] bg-white shadow-luxe">
-              <img src={item.image} alt={item.name} className="h-56 w-full rounded-t-[1.8rem] object-cover" />
+        <div className="sold-portfolio-rail mt-10 overflow-hidden px-3 py-6">
+          <div className="sold-portfolio-track flex w-max gap-5">
+            {[...soldData, ...soldData].map((item, index) => (
+             <div key={`${item.id}-${index}`} className="sold-portfolio-card-shell group relative z-0 min-w-[320px] max-w-[320px] flex-none overflow-hidden rounded-[1.8rem]">
+              <div className="sold-portfolio-card overflow-hidden rounded-[1.8rem] bg-white shadow-luxe">
+                <div className="overflow-hidden rounded-t-[1.8rem]">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="h-56 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.08]"
+                />
+              </div>
               <div className="p-5">
                 <div className="text-[11px] uppercase tracking-[0.35em] text-gold">{item.market} · {item.year}</div>
                 <div className="mt-2 font-display text-3xl text-charcoal">{item.price}</div>
@@ -223,38 +283,50 @@ export default function Home() {
                 <p className="mt-3 text-sm leading-7 text-charcoal/70">{item.note}</p>
               </div>
             </div>
-          ))}
+            </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="bg-[linear-gradient(180deg,#f8f5ef,#ffffff)]">
-        <div className="mx-auto max-w-[1600px] px-4 py-20 md:px-8">
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
+      <section className="relative overflow-hidden">
+        <img
+          src={bespokeMarketingBg.src}
+          alt={bespokeMarketingBg.label}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(31,41,51,0.56)_0%,rgba(31,41,51,0.68)_100%)]" />
+        <div className="relative mx-auto max-w-[1600px] px-4 py-14 md:px-8 md:py-16">
+          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+            <div className="rounded-[2rem] border border-white/15 bg-white/12 p-6 shadow-[0_24px_80px_rgba(31,41,51,0.18)] backdrop-blur-md md:p-8">
               <SectionHeading
                 eyebrow="Bespoke Marketing"
                 title="A premium presentation system for every listing."
                 description="From drone footage and 3D walkthroughs to print-ready editorial layouts, every campaign is built to feel singular."
+                align="left"
+                eyebrowClassName="text-white/75"
+                titleClassName="text-white"
+                descriptionClassName="text-white/78"
               />
-              <div className="mt-8 space-y-4">
+              <div className="mt-6 space-y-3">
                 {[
                   'Professional photography and cinematic video',
                   'Drone tours, 3D walkthroughs, and floor-plan storytelling',
                   'Private buyer network and global syndication',
                   'Print, editorial, and social media campaigns',
                 ].map((item) => (
-                  <div key={item} className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-[0_10px_30px_rgba(31,41,51,0.05)]">
+                  <div key={item} className="flex items-center gap-3 rounded-2xl border border-white/15 bg-black/20 px-4 py-3 text-white shadow-[0_10px_30px_rgba(31,41,51,0.15)] backdrop-blur-sm">
                     <ShieldCheck className="text-gold" size={18} /> {item}
                   </div>
                 ))}
               </div>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
               {testimonialsData.map((item) => (
-                <div key={item.quote} className="rounded-[1.8rem] border border-charcoal/8 bg-white p-6 shadow-luxe">
+                <div key={item.quote} className="rounded-[1.8rem] border border-white/15 bg-white/14 p-5 text-white shadow-[0_24px_80px_rgba(31,41,51,0.16)] backdrop-blur-md">
                   <div className="text-[11px] uppercase tracking-[0.35em] text-gold">{item.role}</div>
-                  <p className="mt-4 text-sm leading-7 text-charcoal/78">"{item.quote}"</p>
-                  <div className="mt-6 font-semibold text-charcoal">{item.name}</div>
+                  <p className="mt-3 text-sm leading-6 text-white/82">"{item.quote}"</p>
+                  <div className="mt-4 font-semibold text-white">{item.name}</div>
                 </div>
               ))}
             </div>
@@ -262,7 +334,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1600px] px-4 py-20 md:px-8">
+      <section className="mx-auto max-w-[1600px] px-4 py-12 md:px-8 md:py-14">
         <div className="grid gap-8 rounded-[2.4rem] bg-charcoal p-8 text-white shadow-luxe lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <div>
             <div className="text-[11px] font-bold uppercase tracking-[0.4em] text-gold">Home Valuation</div>
@@ -278,19 +350,36 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1600px] px-4 py-20 md:px-8">
-        <div className="rounded-[2.5rem] border border-charcoal/8 bg-white p-8 shadow-luxe">
-          <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
+      <section className="mx-auto max-w-[1600px] px-4 py-12 md:px-8 md:py-14">
+        <div className="rounded-[2.2rem] border border-charcoal/8 bg-white p-6 shadow-luxe md:p-7">
+          <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-end">
             <SectionHeading
               eyebrow="Private Client Newsletter"
               title="Receive exclusive updates, listings, and portfolio announcements."
               description="Kriscel Properties uses localStorage for the demo signup, keeping the experience self-contained and frontend only."
+              className="max-w-[56rem]"
+              titleClassName="text-3xl md:text-5xl"
+              descriptionClassName="leading-6"
             />
             <MagneticButton as={Link} to="/contact" className="bg-charcoal text-white">
               Subscribe / Contact
             </MagneticButton>
           </div>
         </div>
+      </section>
+
+      <section className="relative h-[58vh] overflow-hidden bg-black md:h-[64vh] lg:h-[70vh]">
+        <video
+          src={heroVideoFive.src}
+          aria-label={heroVideoFive.label}
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.18)_0%,rgba(0,0,0,0.5)_100%)]" />
       </section>
     </div>
   );

@@ -14,6 +14,10 @@
   --bronze: #8a6f4d;
   --charcoal: #1f2933;
   --skysoft: #e6eef5;
+  --palette-cream: #e7dec8;
+  --palette-gold: #cbaf87;
+  --palette-slate: #7e8a97;
+  --palette-navy: #30475e;
 }
 
 html {
@@ -97,4 +101,210 @@ body {
   pointer-events: none;
   opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+.site-sections {
+  background: var(--palette-cream);
+  color: var(--palette-navy);
+}
+
+.site-sections [class~='bg-white'] {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.site-sections [class~='bg-charcoal'] {
+  background-color: var(--palette-navy) !important;
+}
+
+.site-sections [class~='bg-gold'] {
+  background-color: var(--palette-gold) !important;
+}
+
+.site-sections [class*='bg-sand'],
+.site-sections [class*='bg-[var(--ivory)]'] {
+  background-color: rgba(231, 222, 200, 0.72) !important;
+}
+
+.site-sections section[class*='mx-auto']:nth-of-type(odd) {
+  background:
+    linear-gradient(135deg, rgba(231, 222, 200, 0.96), rgba(255, 255, 255, 0.56)),
+    var(--palette-cream);
+}
+
+.site-sections section[class*='mx-auto']:nth-of-type(even) {
+  background:
+    linear-gradient(135deg, rgba(126, 138, 151, 0.2), rgba(231, 222, 200, 0.82)),
+    var(--palette-slate);
+}
+
+.site-sections section[class~='bg-white'] {
+  background:
+    linear-gradient(135deg, rgba(126, 138, 151, 0.24), rgba(255, 255, 255, 0.74)),
+    var(--palette-cream) !important;
+}
+
+.site-sections section[class*='mx-auto'],
+.site-sections section[class~='bg-white'] > div {
+  border-radius: 0;
+}
+
+.site-sections [class~='text-charcoal'] {
+  color: var(--palette-navy) !important;
+}
+
+.site-sections [class~='text-gold'] {
+  color: var(--palette-gold) !important;
+}
+
+.site-sections [class*='border-charcoal'] {
+  border-color: rgba(48, 71, 94, 0.14) !important;
+}
+
+.site-sections [class*='border-gold'] {
+  border-color: rgba(203, 175, 135, 0.42) !important;
+}
+
+.site-sections .shadow-luxe {
+  box-shadow: 0 24px 70px rgba(48, 71, 94, 0.14);
+}
+
+.site-sections .card-tilt,
+.site-sections [class*='rounded-[1.8rem]'][class*='bg-white'],
+.site-sections [class*='rounded-[2rem]'][class*='bg-white'] {
+  border-color: rgba(48, 71, 94, 0.18) !important;
+}
+
+.site-sections [class*='from-gold'],
+.site-sections [class*='to-gold'],
+.site-sections [class*='via-champagne'] {
+  --tw-gradient-from: var(--palette-gold) var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: var(--palette-gold) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--palette-cream), var(--tw-gradient-to) !important;
+}
+
+.sold-portfolio-rail {
+  perspective: 1600px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  contain: paint;
+}
+
+.sold-portfolio-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.sold-portfolio-track {
+  animation: sold-portfolio-loop 60s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  contain: layout paint;
+}
+
+.sold-portfolio-rail:hover .sold-portfolio-track {
+  animation-play-state: paused;
+}
+
+@keyframes sold-portfolio-loop {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sold-portfolio-track {
+    animation: none;
+  }
+}
+
+.community-zoom-card {
+  transform-origin: center center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.community-zoom-card:hover {
+  transform: perspective(1600px) translate3d(0, -14px, 120px) scale(1.09) rotateX(3deg);
+  box-shadow: 0 44px 110px rgba(48, 71, 94, 0.24);
+}
+
+.community-zoom-card img {
+  transition:
+    transform 700ms ease-out,
+    filter 700ms ease-out;
+}
+
+.community-zoom-card:hover img {
+  transform: scale(1.14);
+  filter: saturate(1.06) contrast(1.03);
+}
+
+.lifestyle-zoom-card {
+  transform-origin: center center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lifestyle-zoom-card:hover {
+  transform: perspective(1400px) translate3d(0, -10px, 70px) scale(1.05) rotateX(2deg);
+  box-shadow: 0 34px 90px rgba(48, 71, 94, 0.18);
+}
+
+.sold-portfolio-card-shell {
+  border-radius: 1.8rem;
+  clip-path: inset(0 round 1.8rem);
+  transform-origin: center center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    z-index 0ms linear 0ms;
+}
+
+.sold-portfolio-card-shell:hover {
+  z-index: 30;
+  transform: perspective(1600px) translate3d(0, -14px, 120px) scale(1.09) rotateX(3deg);
+}
+
+.sold-portfolio-card {
+  border-radius: 1.8rem;
+  clip-path: inset(0 round 1.8rem);
+  backface-visibility: hidden;
+  will-change: transform;
+  transition:
+    box-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sold-portfolio-card-shell:hover .sold-portfolio-card {
+  box-shadow: 0 44px 110px rgba(48, 71, 94, 0.28);
+}
+
+.sold-portfolio-card > div:first-child,
+.sold-portfolio-card > div:first-child img {
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+.sold-portfolio-card-shell:hover img {
+  transform: scale(1.08);
 }

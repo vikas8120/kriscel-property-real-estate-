@@ -32,13 +32,13 @@ export default function PropertyCard({
     rafRef.current = window.requestAnimationFrame(() => {
       const el = cardRef.current;
       if (!el) return;
-      el.style.transform = `perspective(1400px) rotateX(${y}deg) rotateY(${x}deg) translate3d(0,0,0)`;
+      el.style.transform = `perspective(1400px) rotateX(${y}deg) rotateY(${x}deg) translate3d(0,0,0) scale(1.045)`;
     });
   };
 
   const resetTilt = () => {
     if (rafRef.current) window.cancelAnimationFrame(rafRef.current);
-    if (cardRef.current) cardRef.current.style.transform = 'perspective(1400px) rotateX(0deg) rotateY(0deg) translate3d(0,0,0)';
+    if (cardRef.current) cardRef.current.style.transform = 'perspective(1400px) rotateX(0deg) rotateY(0deg) translate3d(0,0,0) scale(1)';
   };
 
   return (
@@ -52,7 +52,7 @@ export default function PropertyCard({
         <img
           src={property.imageGallery[index]}
           alt={property.address}
-          className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
+          className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.16]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(31,41,51,0)_25%,rgba(31,41,51,0.38)_100%)]" />
         <div className="absolute left-4 top-4 flex items-center gap-2">
@@ -101,9 +101,9 @@ export default function PropertyCard({
         </div>
       </div>
 
-      <div className="space-y-4 p-6">
+      <div className="space-y-4 p-4 sm:p-6">
         <p className="text-sm leading-6 text-charcoal/70">{property.description}</p>
-        <div className="grid grid-cols-2 gap-3 text-sm text-charcoal/75 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-2.5 text-sm text-charcoal/75 sm:grid-cols-4 sm:gap-3">
           <div className="flex items-center gap-2 rounded-2xl bg-sand/50 px-3 py-2">
             <Bed size={16} className="text-gold" /> {property.beds} Beds
           </div>
@@ -117,25 +117,25 @@ export default function PropertyCard({
             <CalendarDays size={16} className="text-gold" /> {property.lotSize}
           </div>
         </div>
-        <div className="flex flex-wrap gap-3 pt-1">
+        <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:flex-wrap">
           <MagneticButton
             type="button"
             onClick={() => onView?.(property)}
-            className="bg-charcoal text-white hover:bg-charcoal/90"
+            className="w-full bg-charcoal text-white hover:bg-charcoal/90 sm:w-auto"
           >
             View Details
           </MagneticButton>
           <MagneticButton
             type="button"
             onClick={() => onTour?.(property)}
-            className="border border-charcoal/12 bg-white text-charcoal hover:border-gold hover:text-gold"
+            className="w-full border border-charcoal/12 bg-white text-charcoal hover:border-gold hover:text-gold sm:w-auto"
           >
             Schedule Private Tour
           </MagneticButton>
           <button
             type="button"
             onClick={() => onSave?.(property)}
-            className={`ml-auto inline-flex items-center gap-2 rounded-full border px-4 py-3 text-sm font-semibold transition ${
+            className={`inline-flex w-full items-center justify-center gap-2 rounded-full border px-4 py-3 text-sm font-semibold transition sm:ml-auto sm:w-auto ${
               isSaved ? 'border-gold bg-gold/10 text-gold' : 'border-charcoal/12 text-charcoal hover:border-gold hover:text-gold'
             }`}
           >

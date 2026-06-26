@@ -54,4 +54,48 @@ export const soldData = [
       'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80',
     note: 'Lifestyle-driven sale supported by editorial photography and immersive video.',
   },
+  {
+    id: 'sold-006',
+    name: 'Harbor Crest Residence',
+    market: 'Newport Coast',
+    year: 2025,
+    type: 'Coastal Estate',
+    price: '$18,750,000',
+    image:
+      'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80',
+    note: 'Closed through a private coastal-buyer network after a short off-market presentation period.',
+  },
+  {
+    id: 'sold-007',
+    name: 'Bel Air Panorama',
+    market: 'Los Angeles',
+    year: 2024,
+    type: 'Hillside Estate',
+    price: '$33,600,000',
+    image:
+      'https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1200&q=80',
+    note: 'Positioned as a trophy view property and sold with a narrative-led global syndication campaign.',
+  },
+  {
+    id: 'sold-008',
+    name: 'Skyline Atelier',
+    market: 'Miami',
+    year: 2024,
+    type: 'Penthouse',
+    price: '$21,300,000',
+    image:
+      'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80',
+    note: 'Secured a cross-border buyer with a tailored private preview and high-touch negotiation process.',
+  },
+  {
+    id: 'sold-009',
+    name: 'Cedar Grove Manor',
+    market: 'Aspen',
+    year: 2023,
+    type: 'Mountain Estate',
+    price: '$14,950,000',
+    image:
+      'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80',
+    note: 'Moved quickly ahead of peak season with discreet outreach to a curated second-home client list.',
+  },
 ];

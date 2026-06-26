@@ -5,7 +5,7 @@ export default function CommunityCard({ community, onSelect }) {
     <button
       type="button"
       onClick={() => onSelect?.(community)}
-      className="group overflow-hidden rounded-[1.8rem] border border-charcoal/8 bg-white text-left shadow-[0_18px_60px_rgba(31,41,51,0.08)]"
+      className="community-zoom-card group overflow-hidden rounded-[1.8rem] border border-charcoal/8 bg-white text-left shadow-[0_18px_60px_rgba(31,41,51,0.08)]"
     >
       <div className="relative aspect-[4/3] overflow-hidden">
         <img

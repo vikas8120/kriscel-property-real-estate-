@@ -11,6 +11,10 @@ export default {
         bronze: '#8A6F4D',
         charcoal: '#1F2933',
         skysoft: '#E6EEF5',
+        paletteCream: '#E7DEC8',
+        paletteGold: '#CBAF87',
+        paletteSlate: '#7E8A97',
+        paletteNavy: '#30475E',
       },
       fontFamily: {
         display: ['"Cormorant Garamond"', 'serif'],
