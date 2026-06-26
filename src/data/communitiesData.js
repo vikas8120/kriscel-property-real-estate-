@@ -28,8 +28,7 @@ export const communitiesData = [
   },
   {
     name: 'Holmby Hills',
-    image:
-      'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/hero-image-3.jpg',
     avgPrice: '$12.9M',
     description: 'Grand lots, heritage homes, and a quiet, highly exclusive residential atmosphere.',
     lifestyle: 'Family',

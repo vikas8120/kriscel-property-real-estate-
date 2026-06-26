@@ -81,7 +81,7 @@ export default function Home() {
   return (
     <div>
       <div id="home-hero-stack">
-        <section className="relative h-[68vh] overflow-hidden bg-black sm:h-[74vh] md:h-[86vh] lg:h-[92vh]">
+        <section className="relative h-[100svh] overflow-hidden bg-black sm:h-[74vh] md:h-[86vh] lg:h-[92vh]">
           <div className="absolute inset-0 grid-soft opacity-30" />
           <video
             src={heroVideoOne.src}
@@ -203,21 +203,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden px-4 py-20 md:px-8">
+      <section className="relative overflow-hidden px-4 py-12 md:px-8 md:py-20">
         <img
           src="/images/private-access-bg.jpg"
           alt=""
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(48,71,94,0.72),rgba(231,222,200,0.72))]" />
-        <div className="relative mx-auto grid max-w-[1600px] gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-          <div className="rounded-[2rem] bg-charcoal p-8 text-white shadow-luxe">
-            <div className="text-[11px] font-bold uppercase tracking-[0.4em] text-gold">Private Off-Market Access</div>
-            <h2 className="mt-4 font-display text-5xl leading-none">Discreet representation for exceptional buyers.</h2>
-            <p className="mt-5 text-sm leading-7 text-white/72">
+        <div className="relative mx-auto grid max-w-[1600px] gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-10">
+          <div className="rounded-[2rem] bg-charcoal p-5 text-white shadow-luxe sm:p-8">
+            <div className="text-[10px] font-bold uppercase tracking-[0.35em] text-gold sm:text-[11px] sm:tracking-[0.4em]">Private Off-Market Access</div>
+            <h2 className="mt-3 font-display text-3xl leading-[0.95] sm:mt-4 sm:text-5xl sm:leading-none">Discreet representation for exceptional buyers.</h2>
+            <p className="mt-3 text-[13px] leading-6 text-white/72 sm:mt-5 sm:text-sm sm:leading-7">
               We present limited inventory with a restrained, client-first experience that mirrors a luxury private office.
             </p>
-            <div className="mt-8 flex gap-3">
+            <div className="mt-5 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:gap-3">
               <MagneticButton as={Link} to="/private-listings" className="bg-gold text-white">
                 Request Access
               </MagneticButton>
@@ -226,15 +226,15 @@ export default function Home() {
               </MagneticButton>
             </div>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-2.5 grid-cols-2 sm:grid-cols-2 xl:grid-cols-3">
             {lifestyleTiles.map((tile, index) => (
               <div
                 key={tile}
-                className={`lifestyle-zoom-card rounded-[1.8rem] p-6 shadow-luxe ${index % 2 ? 'bg-white' : 'bg-[var(--ivory)]'}`}
+                className={`lifestyle-zoom-card rounded-[1.55rem] p-4 shadow-luxe sm:p-6 ${index % 2 ? 'bg-white' : 'bg-[var(--ivory)]'}`}
               >
-                <div className="text-[11px] font-bold uppercase tracking-[0.35em] text-gold">Browse by lifestyle</div>
-                <div className="mt-10 font-display text-3xl text-charcoal">{tile}</div>
-                <div className="mt-4 text-sm leading-7 text-charcoal/70">
+                <div className="text-[9px] font-bold uppercase tracking-[0.3em] text-gold sm:text-[11px] sm:tracking-[0.35em]">Browse by lifestyle</div>
+                <div className="mt-4 font-display text-xl leading-tight text-charcoal sm:mt-10 sm:text-3xl">{tile}</div>
+                <div className="mt-2 text-[11px] leading-5 text-charcoal/70 sm:mt-4 sm:text-sm sm:leading-7">
                   Elegant properties filtered by the way clients want to live, entertain, and invest.
                 </div>
               </div>
@@ -296,37 +296,38 @@ export default function Home() {
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(31,41,51,0.56)_0%,rgba(31,41,51,0.68)_100%)]" />
-        <div className="relative mx-auto max-w-[1600px] px-4 py-14 md:px-8 md:py-16">
-          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="rounded-[2rem] border border-white/15 bg-white/12 p-6 shadow-[0_24px_80px_rgba(31,41,51,0.18)] backdrop-blur-md md:p-8">
+        <div className="relative mx-auto max-w-[1600px] px-4 py-6 sm:py-12 md:px-8 md:py-16">
+          <div className="grid gap-3 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8">
+            <div className="rounded-[2rem] border border-white/15 bg-white/12 p-3.5 shadow-[0_24px_80px_rgba(31,41,51,0.18)] backdrop-blur-md sm:p-6 md:p-8">
               <SectionHeading
                 eyebrow="Bespoke Marketing"
                 title="A premium presentation system for every listing."
                 description="From drone footage and 3D walkthroughs to print-ready editorial layouts, every campaign is built to feel singular."
                 align="left"
                 eyebrowClassName="text-white/75"
-                titleClassName="text-white"
-                descriptionClassName="text-white/78"
+                className="max-w-none"
+                titleClassName="text-[2rem] leading-[0.98] text-white sm:text-5xl"
+                descriptionClassName="text-[12px] leading-5 text-white/78 sm:text-base sm:leading-6"
               />
-              <div className="mt-6 space-y-3">
+              <div className="mt-3 space-y-2 sm:mt-6 sm:space-y-3">
                 {[
                   'Professional photography and cinematic video',
                   'Drone tours, 3D walkthroughs, and floor-plan storytelling',
                   'Private buyer network and global syndication',
                   'Print, editorial, and social media campaigns',
                 ].map((item) => (
-                  <div key={item} className="flex items-center gap-3 rounded-2xl border border-white/15 bg-black/20 px-4 py-3 text-white shadow-[0_10px_30px_rgba(31,41,51,0.15)] backdrop-blur-sm">
-                    <ShieldCheck className="text-gold" size={18} /> {item}
+                  <div key={item} className="flex items-center gap-2.5 rounded-2xl border border-white/15 bg-black/20 px-3 py-2 text-[12px] leading-5 text-white shadow-[0_10px_30px_rgba(31,41,51,0.15)] backdrop-blur-sm sm:px-4 sm:py-3 sm:text-base">
+                    <ShieldCheck className="shrink-0 text-gold" size={15} /> {item}
                   </div>
                 ))}
               </div>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            <div className="grid gap-2.5 sm:grid-cols-2 xl:grid-cols-3">
               {testimonialsData.map((item) => (
-                <div key={item.quote} className="rounded-[1.8rem] border border-white/15 bg-white/14 p-5 text-white shadow-[0_24px_80px_rgba(31,41,51,0.16)] backdrop-blur-md">
-                  <div className="text-[11px] uppercase tracking-[0.35em] text-gold">{item.role}</div>
-                  <p className="mt-3 text-sm leading-6 text-white/82">"{item.quote}"</p>
-                  <div className="mt-4 font-semibold text-white">{item.name}</div>
+                <div key={item.quote} className="rounded-[1.6rem] border border-white/15 bg-white/14 p-3.5 text-white shadow-[0_24px_80px_rgba(31,41,51,0.16)] backdrop-blur-md sm:p-5">
+                  <div className="text-[9px] uppercase tracking-[0.28em] text-gold sm:text-[11px] sm:tracking-[0.35em]">{item.role}</div>
+                  <p className="mt-2 text-[12px] leading-5 text-white/82 sm:mt-3 sm:text-sm sm:leading-6">"{item.quote}"</p>
+                  <div className="mt-2.5 font-semibold text-white sm:mt-4">{item.name}</div>
                 </div>
               ))}
             </div>

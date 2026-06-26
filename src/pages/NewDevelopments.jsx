@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import SectionHeading from '../components/SectionHeading';
-import Villa3D from '../components/Villa3D';
 import MagneticButton from '../components/MagneticButton';
 import { developmentsData } from '../data/developmentsData';
 
@@ -15,7 +14,7 @@ export default function NewDevelopments() {
         description="Each development feels like a premium launch page with visual depth, amenities, and an inquiry-first approach."
       />
 
-      <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_0.85fr]">
+      <div className="mt-10">
         <div className="grid gap-5">
           {developmentsData.map((project) => (
             <button
@@ -43,32 +42,6 @@ export default function NewDevelopments() {
             </button>
           ))}
         </div>
-
-        <aside className="space-y-6">
-          <div className="rounded-[2rem] border border-charcoal/8 bg-white p-6 shadow-luxe">
-            <div className="text-[11px] font-bold uppercase tracking-[0.35em] text-gold">3D Building Preview</div>
-            <div className="mt-4 overflow-hidden rounded-[1.6rem] bg-[var(--ivory)]">
-              <Villa3D compact fallbackImage={selected.image} className="min-h-[360px]" />
-            </div>
-          </div>
-          <div className="rounded-[2rem] bg-charcoal p-6 text-white shadow-luxe">
-            <div className="text-[11px] font-bold uppercase tracking-[0.35em] text-gold">Amenities</div>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {selected.amenities.map((amenity) => (
-                <span key={amenity} className="rounded-full bg-white/10 px-3 py-2 text-sm text-white">
-                  {amenity}
-                </span>
-              ))}
-            </div>
-            <p className="mt-5 text-sm leading-7 text-white/72">
-              Project inquiry flows can be attached to floor-plan downloads, direct developer contact, or a private launch list.
-            </p>
-            <div className="mt-6 flex gap-3">
-              <MagneticButton className="bg-gold text-white">Request Inquiry</MagneticButton>
-              <MagneticButton className="border border-white/12 bg-white/8 text-white">View Floor Plan</MagneticButton>
-            </div>
-          </div>
-        </aside>
       </div>
     </div>
   );
