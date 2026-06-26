@@ -299,16 +299,24 @@ export default function Home() {
         <div className="relative mx-auto max-w-[1600px] px-4 py-6 sm:py-12 md:px-8 md:py-16">
           <div className="grid gap-3 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8">
             <div className="rounded-[2rem] border border-white/15 bg-white/12 p-3.5 shadow-[0_24px_80px_rgba(31,41,51,0.18)] backdrop-blur-md sm:p-6 md:p-8">
-              <SectionHeading
-                eyebrow="Bespoke Marketing"
-                title="A premium presentation system for every listing."
-                description="From drone footage and 3D walkthroughs to print-ready editorial layouts, every campaign is built to feel singular."
-                align="left"
-                eyebrowClassName="text-white/75"
-                className="max-w-none"
-                titleClassName="text-[2rem] leading-[0.98] text-white sm:text-5xl"
-                descriptionClassName="text-[12px] leading-5 text-white/78 sm:text-base sm:leading-6"
-              />
+              <div className="flex max-w-none flex-col items-start gap-3">
+                <div className="text-[10px] font-bold uppercase tracking-[0.35em] text-white/75 sm:text-[11px] sm:tracking-[0.4em]">
+                  Bespoke Marketing
+                </div>
+                <h2
+                  className="font-display text-[2rem] leading-[0.98] drop-shadow-[0_3px_16px_rgba(0,0,0,0.45)] sm:text-5xl"
+                  style={{ color: '#ffffff' }}
+                >
+                  A premium presentation system for every listing.
+                </h2>
+                <p
+                  className="text-[12px] leading-5 drop-shadow-[0_2px_10px_rgba(0,0,0,0.38)] sm:text-base sm:leading-6"
+                  style={{ color: 'rgba(255,255,255,0.96)' }}
+                >
+                  From drone footage and 3D walkthroughs to print-ready editorial layouts, every campaign is built to
+                  feel singular.
+                </p>
+              </div>
               <div className="mt-3 space-y-2 sm:mt-6 sm:space-y-3">
                 {[
                   'Professional photography and cinematic video',
