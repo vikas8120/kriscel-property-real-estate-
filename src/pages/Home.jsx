@@ -86,7 +86,7 @@ export default function Home() {
           <video
             src={heroVideoOne.src}
             aria-label={heroVideoOne.label}
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover object-[center_28%] brightness-110 contrast-105 sm:object-center sm:brightness-100 sm:contrast-100"
             autoPlay
             muted
             loop
@@ -125,7 +125,7 @@ export default function Home() {
                   <video
                     src={slide.src}
                     aria-label={slide.label}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover object-[center_28%] brightness-110 contrast-105 sm:object-center sm:brightness-100 sm:contrast-100"
                     autoPlay
                     muted
                     loop
@@ -136,8 +136,8 @@ export default function Home() {
               </div>
             );
           })}
-          <div className="relative mx-auto flex h-full max-w-[1600px] items-end px-4 pb-8 sm:pb-10 md:px-8 md:pb-14 lg:pb-16">
-            <div className="relative z-10 max-w-2xl pb-1">
+          <div className="relative mx-auto flex h-full max-w-[1600px] items-center justify-center px-4 pb-8 sm:items-end sm:justify-start sm:pb-10 md:px-8 md:pb-14 lg:pb-16">
+            <div className="relative z-10 w-full max-w-[26rem] pb-1 sm:max-w-2xl">
               <form
                 onSubmit={submitSearch}
                 className="grid gap-1.5 rounded-[1.3rem] border border-charcoal/8 bg-white/84 p-2 shadow-luxe backdrop-blur-sm sm:grid-cols-2 md:grid-cols-4"
@@ -368,18 +368,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative h-[58vh] overflow-hidden bg-black md:h-[64vh] lg:h-[70vh]">
+      <section className="relative h-auto overflow-hidden bg-black sm:h-[58vh] md:h-[64vh] lg:h-[70vh]">
         <video
           src={heroVideoFive.src}
           aria-label={heroVideoFive.label}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="block w-full h-auto object-cover brightness-110 contrast-105 sm:absolute sm:inset-0 sm:h-full sm:w-full sm:object-cover sm:object-center sm:brightness-100 sm:contrast-100"
           autoPlay
           muted
           loop
           playsInline
           preload="auto"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.18)_0%,rgba(0,0,0,0.5)_100%)]" />
       </section>
     </div>
   );
